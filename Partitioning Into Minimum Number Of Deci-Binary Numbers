@@ -1,0 +1,6 @@
+class Solution {
+public:
+    int minPartitions(string n) {
+    auto ans = std::max_element(n.begin(), n.end()); return *ans-48;
+    }
+};
