@@ -1,0 +1,23 @@
+class Solution {
+public:
+
+    ListNode* doubleIt(ListNode* head) {
+        // each number can be doubled in place that is less than 4
+        // if number is greater than 4 than there will be carryover
+        // the largest digit (9) will produce only a 1 for carry over when doubled
+        // knowing this we can iterate over list and double in place
+        ListNode *carry = new ListNode(0, head);
+        ListNode *node = carry;
+        while (node)
+        {
+            node->val = (node->val * 2) % 10; // we only want digit in ones place
+            ListNode *nextnode = node->next;
+            if (nextnode && nextnode->val > 4) // there will be carry over from next nodes number
+            {
+                node->val += 1; // add carry over
+            }
+            node = nextnode;
+        }
+        return carry->val ? carry : head;
+    }
+};
